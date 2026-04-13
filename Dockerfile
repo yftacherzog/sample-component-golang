@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi10/go-toolset@sha256:1edf7bd8e7175ec53a5eefb4e0008adfe30cb7b5ad6834ed7eeef1df9f1920dd AS builder
+FROM registry.access.redhat.com/ubi10/go-toolset@sha256:3712c9b5021efb3d0d92d72d84342fe8dce2783cdd9f286e87dff86165977b16 AS builder
 
 WORKDIR /workspace
 
@@ -10,7 +10,7 @@ RUN go mod download
 
 RUN CGO_ENABLED=0 go build -o /opt/app-root/sample-component-golang main.go
 
-FROM registry.access.redhat.com/ubi10/ubi-minimal@sha256:a74a7a92d3069bfac09c6882087771fc7db59fa9d8e16f14f4e012fe7288554c
+FROM registry.access.redhat.com/ubi10/ubi-minimal@sha256:7bd3d2e7f5c507aebd1575d0f2fab9fe3e882e25fee54fa07f7970aa8bbc5fab
 
 COPY --from=builder /opt/app-root/sample-component-golang /sample-component-golang
 
